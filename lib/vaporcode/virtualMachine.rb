@@ -16,15 +16,20 @@ module VaporCode
     end
 
     def process(list)
-      #p list
-      @@opcodes[list[0]].call(self,list)
-      #p self
+      operator = @@opcodes[list[0]]
+      if operator
+        operator.call(self,list)
+      else
+        puts "Error, operator ''#{list[0]}'' not found"
+        exit
+      end
     end
 
     def feed(program)
       while @pc < program.length && @run
         process(program[@pc])
         @pc += 1
+        #sleep 1
       end
     end
 

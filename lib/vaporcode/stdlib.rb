@@ -1,10 +1,26 @@
 class VaporCode::VirtualMachine
-  opcode 'mov' do |t,l|
-      t.data[l[2]] = l[1]
+  opcode 'movs' do |t,l|
+    t.data[l[2]] = l[1]
+  end
+
+  opcode 'set' do |t,l|
+    t.data[l[2]] = t.data[l[1]]
   end
 
   opcode 'add' do |t,l|
     t.data["acc"] += t.data[l[1]]
+  end
+
+  opcode 'sub' do |t,l|
+    t.data["acc"] -= t.data[l[1]]
+  end
+
+  opcode 'in' do |t,l|
+    t.data["acc"] = $stdin.gets.chomp
+  end
+
+  opcode 'ini' do |t,l|
+    t.data["acc"] = $stdin.gets.chomp.to_i
   end
 
   opcode 'out' do |t,l|
@@ -13,6 +29,27 @@ class VaporCode::VirtualMachine
 
   opcode 'label' do |t,l|
     t.data[l[1]] = t.pc
+  end
+
+  opcode 'jne' do |t,l|
+    if t.data[l[1]] != t.data["acc"]
+      t.pc = l[2].to_i
+      t.pc -= 2
+    end
+  end
+
+  opcode 'jgt' do |t,l|
+    if t.data[l[1]] < t.data["acc"]
+      t.pc = l[2].to_i
+      t.pc -= 2
+    end
+  end
+
+  opcode 'jlt' do |t,l|
+    if t.data[l[1]] > t.data["acc"]
+      t.pc = l[2].to_i
+      t.pc -= 2
+    end
   end
 
   opcode 'jeq' do |t,l|

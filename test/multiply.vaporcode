@@ -1,0 +1,33 @@
+require ./stdlib.rb
+
+; multiply 2 numbers
+
+movs insert_op_1 txt
+movs insert_op_2 txt2
+movi 0 counter
+movi 0 op2
+movi 0 result
+movi 0 zero
+movi 0 one
+
+; get operator 1
+out txt
+ini
+set acc counter
+
+; get operator 2
+out txt2
+ini
+set acc op2
+
+; loop counter times
+set counter acc
+jeq zero 32
+sub one
+set acc counter
+set result acc
+add op2
+set acc result
+jmp 23
+out result
+exit

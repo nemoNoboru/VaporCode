@@ -1,0 +1,30 @@
+require ./stdlib.rb
+
+; we will use some stack
+require ./stdstack.rb
+
+; reverse a list of numbers
+
+; initialization
+movi 0 zero
+movi 0 counter
+movi 1 one
+stack t
+
+; charge values on stack
+ini
+jeq zero 23
+push t
+set counter acc
+add one
+set acc counter
+jmp 14
+
+; print out values on reverse
+pop t
+out acc
+set counter acc
+sub one
+set acc counter
+jne zero 23
+exit
