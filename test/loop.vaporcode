@@ -1,0 +1,26 @@
+require ./stdlib.rb
+; stdlib is who defines comments and
+; empty new lines so you must require it first
+; require standar library
+
+; initialize
+; movi means move integer
+movi 2 op1
+movi 2 acc
+movi 10 test
+mov iterating... status
+
+; calc
+add op1
+out status
+
+; if acc is 10
+; jump to exit
+jeq test 23
+
+; else, jump to add
+jmp 12
+
+; print to screen
+out acc
+exit

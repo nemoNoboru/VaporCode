@@ -1,0 +1,13 @@
+require ./stdlib.rb
+; initialize some strings
+mov top acc
+mov crab op
+mov - space
+
+; add acts on strings as concat
+add space
+add op
+
+; print "top-crab"
+out acc
+exit
